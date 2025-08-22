@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>الملف الشخصي</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7f9;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      color: #007BFF;
+    }
+    .profile-box {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      display: inline-block;
+      text-align: right;
+      min-width: 300px;
+    }
+    .info {
+      margin: 10px 0;
+      font-size: 16px;
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button.save {
+      background: #28a745;
+      color: white;
+    }
+    button.save:hover {
+      background: #1e7e34;
+    }
+    button.delete {
+      background: #dc3545;
+      color: white;
+    }
+    button.delete:hover {
+      background: #a71d2a;
+    }
+    .back {
+      margin-top: 20px;
+      display: inline-block;
+      color: #007BFF;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>👤 الملف الشخصي</h1>
+  <div class="profile-box">
+    <form onsubmit="return updateProfile(event)">
+      <div class="info">
+        <label><strong>الاسم:</strong></label><br>
+        <input type="text" id="userNameInput" required>
+      </div>
+      <div class="info">
+        <label><strong>رقم الجوال:</strong></label><br>
+        <input type="text" id="userPhoneInput" required>
+      </div>
+      <div class="info">
+        <label><strong>كلمة المرور:</strong></label><br>
+        <input type="password" id="userPasswordInput" required>
+      </div>
+      <button type="submit" class="save">💾 حفظ التغييرات</button>
+    </form>
+
+    <!-- زر حذف الحساب -->
+    <button class="delete" onclick="deleteAccount()">❌ حذف الحساب</button>
+
+    <br><a href="index.html" class="back">⬅ العودة للصفحة الرئيسية</a>
+  </div>
+
+  <script>
+    // تحميل البيانات المحفوظة
+    const savedPhone = localStorage.getItem("userPhone");
+    const savedName = localStorage.getItem("userName");
+    const savedPassword = localStorage.getItem("userPassword");
+
+    if (!savedPhone) {
+      window.location.href = "login.html";
+    } else {
+      document.getElementById("userNameInput").value = savedName;
+      document.getElementById("userPhoneInput").value = savedPhone;
+      document.getElementById("userPasswordInput").value = savedPassword;
+    }
+
+    // تحديث البيانات
+    function updateProfile(event) {
+      event.preventDefault();
+
+      const newName = document.getElementById("userNameInput").value;
+      const newPhone = document.getElementById("userPhoneInput").value;
+      const newPass = document.getElementById("userPasswordInput").value;
+
+      localStorage.setItem("userName", newName);
+      localStorage.setItem("userPhone", newPhone);
+      localStorage.setItem("userPassword", newPass);
+
+      alert("✅ تم تحديث بياناتك بنجاح!");
+    }
+
+    // حذف الحساب بالكامل
+    function deleteAccount() {
+      if (confirm("⚠ هل أنت متأكد أنك تريد حذف حسابك نهائيًا؟")) {
+        localStorage.clear();
+        alert("❌ تم حذف حسابك بالكامل!");
+        window.location.href = "register.html"; // رجوع لصفحة التسجيل
+      }
+    }
+  </script>
+</body>
+</html>

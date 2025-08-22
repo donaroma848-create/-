@@ -1,0 +1,18 @@
+<script>
+  function loginUser(event) {
+    event.preventDefault();
+    const phone = document.getElementById("phone").value;
+    const password = document.getElementById("password").value;
+
+    // 🔹 استرجاع بيانات المستخدم من LocalStorage
+    const savedPhone = localStorage.getItem("userPhone");
+    const savedPassword = localStorage.getItem("userPassword");
+
+    if (phone === savedPhone && password === savedPassword) {
+      alert("✅ تم تسجيل الدخول بنجاح!");
+      window.location.href = "index.html"; // تحويل للصفحة الرئيسية
+    } else {
+      alert("❌ رقم الجوال أو كلمة المرور غير صحيحة.");
+    }
+  }
+</script>

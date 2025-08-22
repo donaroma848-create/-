@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>تسجيل حساب جديد</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .register-box {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 370px;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 20px;
+      color: #28a745;
+    }
+    input[type="text"], input[type="password"] {
+      width: 90%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    button {
+      width: 95%;
+      padding: 12px;
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #1e7e34;
+    }
+    .note {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="register-box">
+    <h2>تسجيل حساب جديد</h2>
+    <form onsubmit="return registerUser(event)">
+      <input type="text" id="name" placeholder="👤 الاسم الكامل" required>
+      <input type="text" id="phone" placeholder="📱 رقم الجوال" required>
+      <input type="password" id="password" placeholder="🔑 كلمة المرور" required>
+      <button type="submit">إنشاء الحساب</button>
+    </form>
+    <p class="note">لديك حساب بالفعل؟ <a href="login.html">سجّل الدخول</a></p>
+  </div>
+
+  <script>
+    function registerUser(event) {
+      event.preventDefault();
+      const name = document.getElementById("name").value;
+      const phone = document.getElementById("phone").value;
+      const password = document.getElementById("password").value;
+
+      // 🔹 هنا ممكن تخزن البيانات في قاعدة بيانات أو LocalStorage للتجربة
+      localStorage.setItem("userName", name);
+      localStorage.setItem("userPhone", phone);
+      localStorage.setItem("userPassword", password);
+
+      alert("✅ تم إنشاء الحساب بنجاح! يمكنك تسجيل الدخول الآن.");
+      window.location.href = "login.html"; // توجيه لصفحة تسجيل الدخول
+    }
+  </script>
+</body>
+</html>

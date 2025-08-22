@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>الصفحة الرئيسية</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7f9;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      color: #007BFF;
+    }
+    .welcome {
+      font-size: 20px;
+      margin: 15px 0;
+      color: #333;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      font-size: 16px;
+      background: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #b02a37;
+    }
+  </style>
+</head>
+<body>
+  <h1>الصفحة الرئيسية 🎉</h1>
+  <p class="welcome" id="welcomeMsg"></p>
+  
+  <!-- زر تسجيل الخروج -->
+  <button onclick="logout()">🔒 تسجيل الخروج</button>
+
+  <script>
+    // التحقق إذا كان فيه مستخدم مسجّل دخول
+    const savedPhone = localStorage.getItem("userPhone");
+    const savedName = localStorage.getItem("userName");
+
+    if (!savedPhone) {
+      // إذا ما فيه بيانات، رجّع المستخدم لصفحة تسجيل الدخول
+      window.location.href = "login.html";
+    } else {
+      // عرض اسم المستخدم
+      document.getElementById("welcomeMsg").innerText = "مرحبًا " + savedName + " 👋، سعيدون بوجودك معنا!";
+    }
+
+    function logout() {
+      // حذف بيانات المستخدم من LocalStorage
+      localStorage.removeItem("userPhone");
+      localStorage.removeItem("userPassword");
+      localStorage.removeItem("userName");
+      
+      alert("🚪 تم تسجيل الخروج بنجاح!");
+      window.location.href = "login.html"; // رجوع لصفحة تسجيل الدخول
+    }
+  </script>
+</body>
+</html>
